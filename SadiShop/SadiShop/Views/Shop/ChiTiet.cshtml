@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Chi Tiết - Sadi Shop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="preloader_hide">
+    <div id="page">
+        <!-- BREADCRUMBS -->
+        <section class="breadcrumb parallax margbot30"></section>
+        <!-- //BREADCRUMBS -->
+        <!-- TOVAR DETAILS -->
+        <section class="tovar_details padbot70">
+
+            <!-- CONTAINER -->
+            <div class="container">
+
+                <!-- ROW -->
+                <div class="row">
+
+                    <!-- SIDEBAR TOVAR DETAILS -->
+                    <div class="col-lg-3 col-md-3 sidebar_tovar_details">
+                        <h3><b>Các sản phẩm khác</b></h3>
+
+                        <ul class="tovar_items_small clearfix">
+                            @Html.Action("SanPhamKhac", "Shop")
+                        </ul>
+                    </div><!-- //SIDEBAR TOVAR DETAILS -->
+                    <!-- TOVAR DETAILS WRAPPER -->
+                    <div class="col-lg-9 col-md-9 tovar_details_wrapper clearfix">
+                        <div class="tovar_details_header clearfix margbot35">
+                            <h3 class="pull-left"><b>Chi tiết sản phẩm</b></h3>
+                        </div>
+
+                        <!-- CLEARFIX -->
+                        <div class="clearfix padbot40">
+                            <div class="tovar_view_fotos clearfix">
+                                <div id="slider2" class="flexslider">
+                                    <ul class="slides">
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh1" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh2" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh3" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh4" alt="" /></a></li>
+                                    </ul>
+                                </div>
+                                <div id="carousel2" class="flexslider">
+                                    <ul class="slides">
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh1" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh2" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh3" alt="" /></a></li>
+                                        <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh4" alt="" /></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tovar_view_description">
+                                <div class="tovar_view_title">@Model.TenSanPham</div>
+                                <div class="tovar_article">@Model.MaSanPham</div>
+                                <div class="clearfix tovar_brend_price">
+                                    <div class="pull-left tovar_brend">@ViewBag.nsx</div>
+                                    <div class="pull-right tovar_view_price">@String.Format("{0:0,0}", Model.GiaBan) VNĐ</div>
+                                </div>
+                                <div class="tovar_size_select center">
+                                    <div class="clearfix">
+                                        <p class="pull-left">Chọn SIZE</p>
+                                    </div>
+                                    <a class="sizeXS" href="javascript:void(0);">XS</a>
+                                    <a class="sizeS" href="javascript:void(0);">S</a>
+                                    <a class="sizeM" href="javascript:void(0);">M</a>
+                                    <a class="sizeL" href="javascript:void(0);">L</a>
+                                    <a class="sizeXL" href="javascript:void(0);">XL</a>
+                                    <a class="sizeXXL" href="javascript:void(0);">XXL</a>
+                                </div>
+                                <div class="tovar_view_btn center">
+                                    <a class="add_bag" href="@Url.Action("ThemGioHang","GioHang", new { @sMaSanPham = @Model.MaSanPham, strURL= Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="fb-like" data-href="https://www.facebook.com/HTShop2407/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                            </div>
+                        </div><!-- //CLEARFIX -->
+                        <!-- TOVAR INFORMATION -->
+                        <div class="tovar_information">
+                            <ul class="tabs clearfix">
+                                <li class="current">Chi tiết</li>
+                                <li>Chọn size phù hợp</li>
+                                <li>Bình luận</li>
+                            </ul>
+                            <div class="box visible">
+                                <p>Mã sản phẩm: @Model.MaSanPham</p>
+                                <p>Tên sản phẩm: @Model.TenSanPham </p>
+                                <p>Thông tin: @Model.Thongtin</p>
+                            </div>
+                            <div class="box">
+                                <img src="~/images/tovar/chonsize.JPG" />
+                            </div>
+                            <div class="box">
+                                    <div class="fb-comments comments" data-href="http://localhost:3244/Shop/ChiTiet/@Model.MaSanPham" data-numposts="5" style="display: block;"></div>
+                            </div><!-- //TOVAR INFORMATION -->
+                        </div><!-- //TOVAR DETAILS WRAPPER -->
+                </div><!-- //ROW -->
+            </div><!-- //CONTAINER -->
+        </section><!-- //TOVAR DETAILS -->
+        <!-- BANNER SECTION -->
+        <section class="banner_section">
+
+            <!-- CONTAINER -->
+            <div class="container">
+
+                <!-- ROW -->
+                <div class="row">
+
+                    <!-- BANNER WRAPPER -->
+                    <div class="banner_wrapper">
+                        <!-- BANNER -->
+                        <div class="col-lg-9 col-md-9">
+                            <a class="banner type4 margbot40" href="javascript:void(0);"><img src="~/images/tovar/banner4.jpg" alt="" /></a>
+                        </div><!-- //BANNER -->
+                        <!-- BANNER -->
+                        <div class="col-lg-3 col-md-3">
+                            <a class="banner nobord margbot40" href="javascript:void(0);"><img src="~/images/tovar/banner5.jpg" alt="" /></a>
+                        </div><!-- //BANNER -->
+                    </div><!-- //BANNER WRAPPER -->
+                </div><!-- //ROW -->
+            </div><!-- //CONTAINER -->
+        </section><!-- //BANNER SECTION -->
+        <!-- NEW ARRIVALS -->
+        <section class="new_arrivals padbot50">
+
+            <!-- CONTAINER -->
+            <div class="container">
+                <h2>Xu hướng mới</h2>
+
+                <!-- JCAROUSEL -->
+                <div class="jcarousel-wrapper">
+
+                    <!-- NAVIGATION -->
+                    <div class="jCarousel_pagination">
+                        <a href="javascript:void(0);" class="jcarousel-control-prev"><i class="fa fa-angle-left"></i></a>
+                        <a href="javascript:void(0);" class="jcarousel-control-next"><i class="fa fa-angle-right"></i></a>
+                    </div><!-- //NAVIGATION -->
+
+                    <div id="jcarousel_id" class="jcarousel">
+                        <ul>
+                            @Html.Action("XuHuongMoi", "Shop")
+                        </ul>
+                    </div>
+                </div><!-- //JCAROUSEL -->
+            </div><!-- //CONTAINER -->
+        </section><!-- //NEW ARRIVALS -->
+    </div>
+</div>
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=312367135837001';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
