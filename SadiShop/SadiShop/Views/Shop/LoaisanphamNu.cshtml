@@ -1,0 +1,4 @@
+﻿@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("HienThiSanPhamTheoLoaiNu","Shop", new {id = item.MaLoai })">@item.TenLoai</a></li>
+}
