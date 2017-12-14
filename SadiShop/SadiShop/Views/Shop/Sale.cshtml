@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Khuyến mãi - Sadi Shop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+    <div class="preloader_hide">
+        <div id="page">
+            <!-- HOME -->
+            <section id="home" class="padbot0 margbot40">
+
+                <!-- TOP SLIDER -->
+                <div class="flexslider top_slider sale_page">
+                    <ul class="slides">
+                        <li class="slide1">
+
+                            <!-- CONTAINER -->
+                            <div class="container">
+                                <div class="sale_caption1">
+                                    <p class="title1 captionDelay2 FromTop">DRESS DAY</p>
+                                    <p class="title2 FromTop">tuần lễ khuyến mãi</p>
+                                    <a class="flex_btn" href="javascript:void(0);">Mua ngay và giảm 25%</a>
+                                </div>
+                            </div><!-- //CONTAINER -->
+                        </li>
+
+                        <li class="slide2">
+
+                            <!-- CONTAINER -->
+                            <div class="container">
+                                <div class="sale_caption1">
+                                    <p class="title1 captionDelay2 FromTop">DRESS DAY</p>
+                                    <p class="title2 FromTop">tuần lễ khuyến mãi</p>
+                                    <a class="flex_btn" href="javascript:void(0);">Mua ngay và giảm 25%</a>
+                                </div>
+                            </div><!-- //CONTAINER -->
+                        </li>
+                    </ul>
+                </div><!-- //TOP SLIDER -->
+            </section><!-- //HOME -->
+            <!-- BANNER SECTION -->
+            <section class="banner_section">
+
+                <!-- CONTAINER -->
+                <div class="container">
+
+                    <!-- ROW -->
+                    <div class="row">
+                        <div class="top_sale_banners center">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-ss-12"><a class="banner nobord margbot30" href="javascript:void(0);"><img src="~/images/tovar/banner17.jpg" alt="" /></a></div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-ss-12"><a class="banner nobord margbot30" href="javascript:void(0);"><img src="~/images/tovar/banner18.jpg" alt="" /></a></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ss-12"><a class="banner nobord margbot30" href="javascript:void(0);"><img src="~/images/tovar/banner19.jpg" alt="" /></a></div>
+                        </div>
+                    </div><!-- //ROW -->
+                </div><!-- //CONTAINER -->
+            </section><!-- //BANNER SECTION -->
+            <!-- NEW ARRIVALS -->
+            <section class="new_arrivals padbot50">
+
+                <!-- CONTAINER -->
+                <div class="container">
+                    <h2>FINAL SALE ITEMS</h2>
+
+                    <!-- JCAROUSEL -->
+                    <div class="jcarousel-wrapper">
+
+                        <!-- NAVIGATION -->
+                        <div class="jCarousel_pagination">
+                            <a href="javascript:void(0);" class="jcarousel-control-prev"><i class="fa fa-angle-left"></i></a>
+                            <a href="javascript:void(0);" class="jcarousel-control-next"><i class="fa fa-angle-right"></i></a>
+                        </div><!-- //NAVIGATION -->
+
+                        <div class="jcarousel">
+                            <ul>
+                                @foreach (var sanpham in Model)
+                                {
+                                    <li>
+                                        <!-- TOVAR -->
+                                        <div class="tovar_item_new tovar_sale">
+                                            <div class="tovar_img">
+                                                <img src="~/images/hinhsanpham/@sanpham.Hinh1" alt="" />
+                                                <div class="open-project-link"><a class="open-project tovar_view" href="javascript:void(0);" data-url="@Url.Action("XemNhanh","Shop", new { id = sanpham.MaSanPham })">Xem nhanh</a></div>
+                                            </div>
+                                            <div class="tovar_description clearfix">
+                                                <a class="tovar_title" href="product-page.html">@sanpham.TenSanPham</a>
+                                                <span class="tovar_price">@String.Format("{0:0,0}", sanpham.GiaBan) VNĐ</span>
+                                            </div>
+                                        </div><!-- //TOVAR -->
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div><!-- //JCAROUSEL -->
+                </div><!-- //CONTAINER -->
+            </section><!-- //NEW ARRIVALS -->
+            <!-- BANNER SECTION -->
+            <section class="banner_section">
+
+                <!-- CONTAINER -->
+                <div class="container">
+
+                    <!-- BANNER -->
+                    <a class="banner type4 margbot50" href="javascript:void(0);"><img src="~/images/tovar/banner20.jpg" alt="" /></a>
+                    <!-- //BANNER -->
+                </div><!-- //CONTAINER -->
+            </section><!-- //BANNER SECTION -->
+        </div>
+    </div>
+
+
+
+
