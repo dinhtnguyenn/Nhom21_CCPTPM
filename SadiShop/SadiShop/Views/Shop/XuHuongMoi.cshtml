@@ -1,0 +1,16 @@
+﻿@foreach(var sanpham in Model){
+    <li>
+        <!-- TOVAR -->
+        <div class="tovar_item_new">
+            <div class="tovar_img">
+                <img src="~/images/hinhsanpham/@sanpham.Hinh1" alt="" />
+                <div><a class="open-project tovar_view" href="@Url.Action("ChiTiet", "Shop", new { id = sanpham.MaSanPham})">chi tiết</a></div>
+            </div>
+            <div class="tovar_description clearfix">
+                <a class="tovar_title" href="@Url.Action("ChiTiet", "Shop", new { id = sanpham.MaSanPham })">@sanpham.TenSanPham</a>
+                <span class="tovar_price">@String.Format("{0:0,0}", sanpham.GiaBan) VNĐ</span>
+            </div>
+        </div><!-- //TOVAR -->
+    </li>
+}
+

@@ -1,0 +1,64 @@
+﻿@model SadiShop.Models.SanPham
+
+<div class="tover_view_page element_fade_in">
+    <div class="tover_view_header clearfix">
+        <p>Xem nhanh sản phẩm</p>
+        <a id="tover_view_page_close" href="javascript:void(0);">Close<i>X</i></a>
+    </div>
+
+    <div class="clearfix">
+        <div class="tovar_view_fotos clearfix">
+            <div id="slider1" class="flexslider">
+                <ul class="slides">
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh1" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh2" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh3" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh4" alt="" /></a></li>
+                </ul>
+            </div>
+            <div id="carousel1" class="flexslider">
+                <ul class="slides">
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh1" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh2" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh3" alt="" /></a></li>
+                    <li><a href="javascript:void(0);"><img src="~/images/hinhsanpham/@Model.Hinh4" alt="" /></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tovar_view_description">
+            <a href="@Url.Action("ChiTiet", "Shop", new { id = Model.MaSanPham })"><div class="tovar_view_title">@Model.TenSanPham</div></a>
+            <div class="tovar_article">@Model.MaSanPham</div>
+            <div class="clearfix tovar_brend_price">
+                <div class="pull-left tovar_brend">@ViewBag.nsx</div>
+                <div class="pull-right tovar_view_price">@String.Format("{0:0,0}", Model.GiaBan) VNĐ</div>
+            </div>
+            <div class="tovar_size_select center">
+                <div class="clearfix">
+                    <p class="pull-left">Chọn SIZE</p>
+                </div>
+                <a class="sizeXS" href="javascript:void(0);">XS</a>
+                <a class="sizeS" href="javascript:void(0);">S</a>
+                <a class="sizeM" href="javascript:void(0);">M</a>
+                <a class="sizeL" href="javascript:void(0);">L</a>
+                <a class="sizeXL" href="javascript:void(0);">XL</a>
+                <a class="sizeXXL" href="javascript:void(0);">XXL</a>
+                <a class="sizeXXXL" href="javascript:void(0);">XXXL</a>
+            </div>
+            <div class="tovar_view_btn center">
+                <a class="add_bag" href="@Url.Action("ThemGioHang","GioHang", new { @sMaSanPham = @Model.MaSanPham, strURL= Request.Url })"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+            </div>
+            <div class="tovar_shared clearfix"><div class="fb-like" data-href="https://www.facebook.com/HTShop2407/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div></div>
+        </div>
+    </div>
+</div>
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1818735561781445';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
