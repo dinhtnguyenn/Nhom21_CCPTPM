@@ -1,0 +1,22 @@
+﻿@using SadiShop.Models
+@model List<GioHang>
+ <a class="shopping_bag_btn" href="javascript:void(0);"><i class="fa fa-shopping-cart"></i><p>Giỏ hàng</p><span>@ViewBag.Tongsoluong</span></a>
+    <div class="cart">
+        <ul class="cart-items" style="overflow: auto; height:233px; width:233px">
+            @foreach (var item in Model)
+            {
+                <li class="clearfix">
+                    <img class="cart_item_product" src="~/images/hinhsanpham/@item.sHinh" alt="" />
+                    <a href="@Url.Action("ChiTiet", "Shop", new { id = item.sMaSanPham })" class="cart_item_title">@item.sTenSanPham</a>
+                    <span class="cart_item_price">@item.iSoLuong × @String.Format("{0:0,0}", item.dGiaBan) VNĐ</span>
+                </li>
+            }
+
+        </ul>
+        <div class="cart_total">
+            <div class="clearfix"><span class="cart_subtotal">Tổng tiền: <b>@String.Format("{0:0,0}", @ViewBag.Tongtien) VNĐ</b></span></div>
+            <a class="btn active" href="@Url.Action("GioHang", "GioHang")">Chi tiết giỏ hàng</a>
+            <div class="clearfix"></div>
+            <a class="btn active" href="@Url.Action("ThongTinKhachHang", "GioHang")">Thanh toán</a>
+        </div>
+    </div>

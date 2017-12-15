@@ -1,0 +1,116 @@
+﻿@using SadiShop.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "Giỏ Hàng - Sadi Shop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="preloader_hide">
+    <div id="page">
+        <!-- BREADCRUMBS -->
+        <section class="breadcrumb parallax margbot30"></section>
+        <!-- //BREADCRUMBS -->
+        <!-- PAGE HEADER -->
+        <section class="page_header">
+
+            <!-- CONTAINER -->
+            <div class="container">
+                <h3 class="pull-left"><b>Giỏ hàng</b></h3>
+                <div class="pull-right">
+                    <a href="@Url.Action("Index", "Shop")">Trở về trang chủ<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div><!-- //CONTAINER -->
+        </section><!-- //PAGE HEADER -->
+        <!-- SHOPPING BAG BLOCK -->
+        <section class="shopping_bag_block">
+
+            <!-- CONTAINER -->
+            <div class="container">
+
+                <!-- ROW -->
+                <div class="row">
+
+                    <!-- CART TABLE -->
+                    <div class="col-lg-9 col-md-9 padbot40">
+
+                        <table class="shop_table">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail" style="text-align:center"></th>
+                                    <th class="product-name">Sản phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-subtotal">Thành tiền</th>
+                                    <th class="product-remove"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="product-thumbnail"><a href="@Url.Action("ChiTiet", "Shop", new{ id = item.sMaSanPham} )"><img src="~/images/hinhsanpham/@item.sHinh" alt="" /></a></td>
+                                        <td class="product-name">
+                                            <a href="@Url.Action("ChiTiet", "Shop", new{ id = item.sMaSanPham} )">@item.sTenSanPham</a>
+                                            <ul class="variation">
+                                                <li class="variation-Color">Color: <span>Brown</span></li>
+                                                <li class="variation-Size">Size: <span>XS</span></li>
+                                            </ul>
+                                        </td>
+                                        @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @sMaSP = item.sMaSanPham }))
+                                        {
+                                            <td class="product-price">@String.Format("{0:0,0}", item.dGiaBan)</td>
+                                            <td class="product-quantity">
+                                                <input type="number" min="1" name="txtSoLuong" class="center" value="@item.iSoLuong" style="width:50px;margin-left:40px; font-size:16px" />
+                                                <p></p>
+                                                <input class="btn active" type="submit" value="Sửa" />
+                                            </td>
+
+                                            <td class="product-subtotal">@String.Format("{0:0,0}", item.dThanhTien)</td>
+                                        }
+
+                                        <td class="product-remove"><a href="javascript:void(0);"><span>@Html.ActionLink("Xoá", "XoaGioHang", new { @sMaSP = item.sMaSanPham })</span> <i>@Html.ActionLink("x", "XoaGioHang", new { @sMaSP = item.sMaSanPham })</i></a></td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th>
+                                        <a>
+                                            @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
+                                        </a>
+                                    </th>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div><!-- //CART TABLE -->
+                    <!-- SIDEBAR -->
+                    <div id="sidebar" class="col-lg-3 col-md-3 padbot50">
+
+                        <!-- BAG TOTALS -->
+                        <div class="sidepanel widget_bag_totals">
+                            <h3>Thông tin đơn hàng</h3>
+                            <table class="bag_total">
+                                <tr class="cart-subtotal clearfix">
+                                    <th>Tạm tính</th>
+                                    <td>@String.Format("{0:0,0}", ViewBag.TongTien)</td>
+                                </tr>
+                                <tr class="shipping clearfix">
+                                    <th>Giao hàng</th>
+                                    <td>Free</td>
+                                </tr>
+                                <tr class="total clearfix">
+                                    <th>Tổng tiền</th>
+                                    <td>@String.Format("{0:0,0}", ViewBag.TongTien)</td>
+                                </tr>
+                            </table>
+                            <hr />
+                            <a class="btn active" href="@Url.Action("ThongTinKhachHang", "GioHang")">Thanh toán</a>
+                            <a class="btn inactive" href="@Url.Action("Index", "Shop")">Tiếp tục mua hàng</a>
+                        </div><!-- //REGISTRATION FORM -->
+                    </div><!-- //SIDEBAR -->
+                </div><!-- //ROW -->
+            </div><!-- //CONTAINER -->
+        </section><!-- //SHOPPING BAG BLOCK -->
+
+    </div>
+</div>
+
