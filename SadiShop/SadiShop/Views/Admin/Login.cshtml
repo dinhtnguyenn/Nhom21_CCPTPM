@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập Admin - SadiShop";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link href="~/Content/styleadmin.css" rel="stylesheet" />
+
+</head>
+<body>
+    <body class="align">
+        <div class="grid">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <form class="form login">
+                    <header class="login__header">
+                        <h3 class="login__title">Đăng nhập hệ thống quản trị</h3>
+                    </header>
+                    <div class="login__body form login">
+                        <div class="form__field form login">
+                            <input type="text" name="username" placeholder="Tên đăng nhập" required>
+                        </div>
+                        <div class="form__field form login">
+                            <input type="password" name="password" placeholder="Mật khẩu" required>
+                        </div>
+                    </div>
+                    <footer class="login__footer form login">
+                        <input type="submit" value="Đăng nhập">
+                        <p style="color:red"><i>@ViewBag.ThongBao</i></p>
+                    </footer>
+                </form>
+            }
+        </div>
+    </body>
+</body>
+</html>

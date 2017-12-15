@@ -1,0 +1,36 @@
+﻿@model SadiShop.Models.LoaiSanPham
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Chi tiết loại sản phẩm</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>Mã loại sản phẩm</td>
+                        <td>@Html.DisplayFor(model => model.MaLoai)</td>
+                    </tr>
+                    <tr>
+                        <td>Tên loại sản phẩm</td>
+                        <td>@Html.DisplayFor(model => model.TenLoai)</td>
+                    </tr>
+                    <tr>
+                        <td>Mã Loại cha</td>
+                        <td>@Html.DisplayFor(model => model.MaLoaiCha)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+</div>
+<p>
+    @Html.ActionLink("Sửa thông tin loại sản phẩm", "SuaLoaiSanPham", new { id = Model.MaLoai }) |
+    @Html.ActionLink("Trở về", "LoaiSanPham")
+</p>

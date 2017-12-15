@@ -1,0 +1,74 @@
+﻿@model SadiShop.Models.SanPham
+
+@{
+    ViewBag.Title = "Thêm sản phẩm - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm("ThemMoiSanPham", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Thêm sản phẩm mới</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Mã sản phẩm</td>
+                            <td>
+                                @Html.EditorFor(model => model.MaSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaSanPham, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên sản phẩm</td>
+                            <td>
+                                @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên Loại</td>
+                            <td>@Html.DropDownList("MaLoai")</td>
+                        </tr>
+                        <tr>
+                            <td>Tên nhà sản xuất</td>
+                            <td>@Html.DropDownList("MaNhaSanXuat")</td>
+                        </tr>
+                        <tr>
+                            <td>Thông tin sản phẩm</td>
+                            <td>
+                                @Html.TextAreaFor(model => model.Thongtin, new { htmlAttributes = new { @class = "col-xs-4" }, rows = "5", cols = "120" })
+                                @Html.ValidationMessageFor(model => model.Thongtin, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Giá bán</td>
+                            <td>
+                                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hình sản phẩm</td>
+                            <td>
+                                <input type="file" name="fileupload" value="@ViewBag.Anh" />
+                                @ViewBag.ThongBao
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div><button type="submit" class="btn btn-info pull-right btn-success" style="margin-bottom: 20px;margin-right: 500px;">Thêm sản phẩm</button></div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Trở về", "SanPham")
+</div>
