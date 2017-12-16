@@ -1,0 +1,63 @@
+﻿@model SadiShop.Models.AspNetUser
+
+@{
+    ViewBag.Title = "Thông Tin Khách Hàng - SadiShop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@Html.Action("ThongTinGioHang", "GioHang")
+<hr />
+<h1 style="text-align:center">
+    THÔNG TIN KHÁCH HÀNG
+</h1>
+<div class="preloader_hide">
+    <div id="page">
+        <section class="shopping_bag_block">
+
+            <!-- CONTAINER -->
+            <div class="container">
+                <!-- CART TABLE -->
+                <div class="col-lg-9 col-md-9 padbot40">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2", @Title = "Họ và tên" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Thanh toán" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
