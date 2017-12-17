@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SadiShop.Models.ChiTietDonDatHang>
+
+@{
+    ViewBag.Title = "Chi tiết Đơn Hàng -  - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Chi tiết đơn hàng</h2>
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tr>
+                    <th>Hình sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content("~/images/hinhsanpham/" + item.SanPham.Hinh1)" width="20px" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SanPham.TenSanPham)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuong)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

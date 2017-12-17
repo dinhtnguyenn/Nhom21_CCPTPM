@@ -1,0 +1,74 @@
+﻿@model IEnumerable<SadiShop.Models.NhanSanXuat>
+@helper Truncate(string input, int length)
+{
+if (input.Length < length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+@{
+    ViewBag.Title = "Nhà sản xuất - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        QUẢN LÝ NHÀ SẢN XUẤT
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Nhà sản xuất</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped" style="text-align:center">
+                        <thead>
+                            <tr>
+                                <th>Mã nhà sản xuất</th>
+                                <th>Tên nhà sản xuất</th>
+                                <th>Quốc gia</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.MaNhaSanXuat)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TenNhaSanXuat)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.QuocGia)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "SuaNhaSanXuat", new { id = item.MaNhaSanXuat }) |
+                                        @Html.ActionLink("Chi tiết", "ChiTietNhaSanXuat", new { id = item.MaNhaSanXuat }) |
+                                        @Html.ActionLink("Xóa", "XoaNhaSanXuat", new { id = item.MaNhaSanXuat })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Mã nhà sản xuất</th>
+                                <th>Tên nhà sản xuất</th>
+                                <th>Quốc gia</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->
