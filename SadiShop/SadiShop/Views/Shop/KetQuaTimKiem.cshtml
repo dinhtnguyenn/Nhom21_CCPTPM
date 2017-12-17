@@ -1,0 +1,62 @@
+﻿@*@model IEnumerable<SadiShop.Models.SanPham>*@
+@using PagedList.Mvc;
+@using SadiShop.Models;
+@model PagedList.PagedList<SanPham>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm - Sadi Shop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<div class="preloader_hide parallax my_account">
+    <div id="page">
+        <section class="tovar_section">
+            <!-- CONTAINER -->
+            <div class="container">
+                <h2>Kết quả tìm kiếm | @ViewBag.ThongBao</h2>
+                <!-- ROW -->
+                <div class="row">
+                    <!-- TOVAR WRAPPER -->
+                    <div class="tovar_wrapper" data-appear-top-offset='-100' data-animated='fadeInUp'>
+                        <div class="respond_clear_768"></div>
+                        @foreach (var sanpham in Model)
+                        {
+                        <!-- TOVAR4 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-ss-12 padbot40">
+                                <div class="tovar_item">
+                                    <div class="tovar_img">
+                                        <div class="tovar_img_wrapper">
+                                            <img class="img" src="~/images/hinhsanpham/@sanpham.Hinh1" alt="" />
+                                            <img class="img_h" src="~/images/hinhsanpham/@sanpham.Hinh2" alt="" />
+                                        </div>
+                                        <div class="tovar_item_btns">
+                                            <div class="open-project-link"><a class="open-project tovar_view" href="javascript:void(0);" data-url="@Url.Action("XemNhanh","Shop", new { id = sanpham.MaSanPham })">xem nhanh</a></div>
+                                            <a class="add_bag" href="@Url.Action("ThemGioHang","GioHang", new { @sMaSanPham = @sanpham.MaSanPham, strURL= Request.Url.ToString() })"><i class="fa fa-shopping-cart"></i></a>
+
+                                        </div>
+                                    </div>
+                                    <div class="tovar_description clearfix">
+                                        <a class="tovar_title" href="@Url.Action("ChiTiet", "Shop", new { id = sanpham.MaSanPham })">@sanpham.TenSanPham</a>
+                                        <span class="tovar_price">@String.Format("{0:0,0}", sanpham.GiaBan) VNĐ</span>
+                                    </div>
+                                </div>
+                            </div><!-- //TOVAR4 -->
+                        }
+                    </div><!-- //TOVAR WRAPPER -->
+                    <div class="respond_clear_768"></div>
+                </div><!-- //ROW -->
+                <hr />
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount;
+                <div class="clearfix">
+                    <!-- PAGINATION -->
+                    <ul class="pagination">
+                        @Html.PagedListPager(Model, page => Url.Action("KetQuaTimKiem", new { page = page, @sTuKhoa = ViewBag.TuKhoa }))
+                    </ul><!-- //PAGINATION -->
+                </div>
+                <hr />
+                <div class="respond_clear_768"></div>
+            </div><!-- //CONTAINER -->
+
+        </section><!-- //TOVAR SECTION -->
+    </div>
+</div>
