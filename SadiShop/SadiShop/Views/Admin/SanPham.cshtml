@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SadiShop.Models.SanPham>
+
+@helper Truncate(string input, int length)
+{
+if (input.Length < length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+@{
+    ViewBag.Title = "Sản phẩm - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        QUẢN LÝ SẢN PHẨM
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Sản phẩm</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped" style="text-align:center">
+                        <thead>
+                            <tr>
+                                <th>Ảnh SP</th>
+                                <th>Mã SP</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Thông tin sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><img src="@Url.Content("~/images/hinhsanpham/"+ item.Hinh1)" width="70px" /></td>
+                                    <td>@Html.DisplayFor(modelItem => item.MaSanPham)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TenSanPham)</td>
+                                    <td>@Truncate(item.Thongtin, 50)</td>
+                                    <td>@String.Format("{0:0,0}", item.GiaBan)</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "SuaSanPham", new { id = item.MaSanPham }) |
+                                        @Html.ActionLink("Chi tiết", "ChiTietSanPham", new { id = item.MaSanPham }) |
+                                        @Html.ActionLink("Xóa", "XoaSanPham", new { id = item.MaSanPham })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Ảnh SP</th>
+                                <th>Mã SP</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Thông tin sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

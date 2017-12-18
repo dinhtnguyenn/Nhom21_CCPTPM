@@ -1,0 +1,52 @@
+﻿@model SadiShop.Models.LoaiSanPham
+
+@{
+    ViewBag.Title = "Thêm Loại Sản Phẩm - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ThemMoiLoaiSanPham", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Thêm loại sản phẩm mới</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Mã loại sản phẩm</td>
+                            <td>
+                                @Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên loại sản phẩm</td>
+                            <td>
+                                @Html.EditorFor(model => model.TenLoai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mã loại cha</td>
+                            <td>
+                                @Html.EditorFor(model => model.MaLoaiCha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaLoaiCha, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div><button type="submit" class="btn btn-info pull-right btn-success" style="margin-bottom: 20px;margin-right: 500px;">Thêm loại sản phẩm</button></div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Trở về", "LoaiSanPham")
+</div>
