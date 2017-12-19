@@ -1,62 +1,80 @@
 ﻿@using SadiShop.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Đăng Nhập - SadiShop";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+<!-- MY ACCOUNT PAGE -->
+<section class="my_account parallax img_log">
+
+    <!-- CONTAINER -->
+    <div class="container">
+
+        <div class="my_account_block clearfix">
+            <div class="login">
+                <h2>TÔI ĐÃ CÓ TÀI KHOẢN</h2>
+                <div class="login_form">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </div>
+                                </div>
+                            </div>*@
+                    <div class="pull-right"><a class="forgot_pass" href="@Url.Action("ForgotPassword", "Account")">Quên mật khẩu?</a></div>
+                        <div class="pull-right">
+                            <input type="checkbox" id="categorymanufacturer1">
+                            <label for="categorymanufacturer1" style="margin-left:10px;">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                Ghi nhớ |   
+                            </label>
+                        </div>
+                        
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Đăng nhập" class="btn btn-default" />
                         </div>
                     </div>
+                    }
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+            </div>
+            <div class="new_customers">
+                <h2>KHÁCH HÀNG MỚI</h2>
+                <h3>Đăng ký tài khoản bạn sẽ nhận được những lợi ích sau:</h3>
+                <ul>
+                    <li><h4>—  Mua sắm dễ dàng hơn</h4></li>
+                    <li><h4>—  Thanh toán nhanh chóng và dễ dàng</h4></li>
+                    <li><h4>—  Hưởng được nhiều ưu đãi hấp dẫn</h4></li>
+                    <li><h4>—  Sử dụng dịch vụ một cách tốt nhất</h4></li>
+                </ul>
+                <div class="center"><a class="btn active" href="@Url.Action("Register", "Account")">Đăng ký tài khoản mới</a></div>
+            </div>
+        </div>
+
+        <div class="my_account_note center">Bạn cần hỗ trợ?  <b>(+84) 1205 070 996</b></div>
+    </div><!-- //CONTAINER -->
+</section><!-- //MY ACCOUNT PAGE -->
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

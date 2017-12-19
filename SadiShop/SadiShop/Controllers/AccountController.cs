@@ -80,13 +80,14 @@ namespace SadiShop.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
+                    //return RedirectToAction("Index", "Shop");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Đăng nhập không thành công.");
                     return View(model);
             }
         }
@@ -151,19 +152,26 @@ namespace SadiShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, PhoneNumber = model.PhoneNumber, FullName= model.FullName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Xác thực tài khoản", "<i>Đây là email tự động, vui lòng không trả lời email này.</i> <br/>Xin chào " + user.FullName + ", <br/> Cảm ơn đã đã đăng ký tài khoản trên SadiShop - Vui lòng click vào <a href=\"" + callbackUrl + "\">đây</a> để thực hiện việc xác thực tài khoản.  <br/> Cần hỗ trợ vui lòng gửi mail đến: care@sadishop.com. <br/> Cảm ơn bạn!. <br/> <strong>SadiShop - Hướng đến tương lai</strong>");
+                    ViewBag.Message = "Chúng tôi đã gửi yêu cầu xác thực đến email của bạn. Vui lòng kiểm tra email để thực hiện việc xác thực.";
+                    //return RedirectToAction("Index", "Shop");
+                    return View(model);
+                    //return RedirectToAction("Index", "Shop");
                 }
                 AddErrors(result);
             }
@@ -392,7 +400,7 @@ namespace SadiShop.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Shop");
         }
 
         //
@@ -449,7 +457,7 @@ namespace SadiShop.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Shop");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
