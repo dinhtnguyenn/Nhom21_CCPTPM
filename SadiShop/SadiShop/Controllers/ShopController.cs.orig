@@ -12,6 +12,7 @@ namespace SadiShop.Controllers
     public class ShopController : Controller
     {
 		dbQLQuanAoDataContext data = new dbQLQuanAoDataContext();
+<<<<<<< HEAD
 		//------------------------------HIỂN THỊ CHI TIẾT--------------------------------
         public ActionResult ChiTiet(string id)
         {
@@ -19,7 +20,8 @@ namespace SadiShop.Controllers
             var nhasanxuat = data.NhanSanXuats.SingleOrDefault(n => n.MaNhaSanXuat == sanpham.MaNhaSanXuat);
             ViewBag.nsx = nhasanxuat.TenNhaSanXuat;
             return View(sanpham);
-        }
+=======
+		
 		public ActionResult XemNhanh(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -36,13 +38,13 @@ namespace SadiShop.Controllers
             //               ).SingleOrDefault();
             return PartialView("XemNhanh", sanpham);
 			
-        }
-
 			//--------------------------------XU HƯỚNG MỚI--------------------------------
         public ActionResult XuHuongMoi()
         {
             var sanpham = from sp in data.SanPhams orderby sp.MaSanPham ascending select sp;
             return PartialView(sanpham);
+        }
+>>>>>>> XemNhanh_XuHuongMoi
         }
 	}
 }
