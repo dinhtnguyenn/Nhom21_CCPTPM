@@ -1,0 +1,45 @@
+﻿@model SadiShop.Models.NhanSanXuat
+
+@{
+    ViewBag.Title = "Xóa Nhà Sản Xuất - SadiShop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Bạn có chắc chắn xóa nhà sản xuất này?</h3>
+<div>
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Nhà sản xuất</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Mã nhà sản xuất</td>
+                            <td>@Html.DisplayFor(model => model.MaNhaSanXuat)</td>
+                        </tr>
+                        <tr>
+                            <td>Tên nhà sản xuất</td>
+                            <td>@Html.DisplayFor(model => model.TenNhaSanXuat)</td>
+                        </tr>
+                        <tr>
+                            <td>Quốc gia</td>
+                            <td>@Html.DisplayFor(model => model.QuocGia)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-warning" /> |
+            @Html.ActionLink("Trỏ về", "NhaSanXuat")
+        </div>
+    }
+</div>
